@@ -29,13 +29,16 @@ Fit the model and then predict
 
 ## PROGRAM:
 ## Libraries
+```
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 from keras import layers
 from keras.models import Sequential
+```
 ## Read Train Data & Normalize:
+```
 dataset_train = pd.read_csv('trainset.csv')
 
 dataset_train.columns
@@ -65,8 +68,10 @@ X_train.shape
 
 length = 60
 n_features = 1
+```
 
 ## Build & Train Model
+```
 model = Sequential([layers.SimpleRNN(50,input_shape=(60,1)),
                     layers.Dense(1)])
 
@@ -95,7 +100,9 @@ X_test = np.array(X_test)
 X_test = np.reshape(X_test,(X_test.shape[0], X_test.shape[1],1))
 
 X_test.shape
+```
 ## Predict Values & Plot
+```
 predicted_stock_price_scaled = model.predict(X_test)
 predicted_stock_price = sc.inverse_transform(predicted_stock_price_scaled)
 
@@ -107,10 +114,12 @@ plt.xlabel('Time')
 plt.ylabel('Google Stock Price')
 plt.legend()
 plt.show()
+```
 ## Check MSE Score
+```
 from sklearn.metrics import mean_squared_error as mse
 mse(y_test,predicted_stock_price)
-
+```
 
 
 ## OUTPUT
